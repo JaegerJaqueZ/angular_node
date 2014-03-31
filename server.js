@@ -9,6 +9,9 @@ app.configure(function() {
 	app.use(express.logger('dev')); 						// log every request to the console
 	app.use(express.bodyParser()); 							// pull information from html in POST
 	app.use(express.methodOverride()); 						// simulate DELETE and PUT
+	app.use(function(req, res) {
+		res.sendfile(__dirname + '/public/html/tripster.html');
+	});
 });
 
 app.configure('development', function(){
@@ -16,7 +19,7 @@ app.configure('development', function(){
 });
 
 // routes ======================================================================
-require('./app/routes.js')(app);
+// require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
 app.listen(port, function() {

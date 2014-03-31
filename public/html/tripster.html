@@ -1,0 +1,85 @@
+<!doctype html>
+<html ng-app="tripsterApp">
+<head>
+  <!--============================ META ============================-->
+
+
+  <!--============================ SCROLLS ============================-->
+  <!-- snap -->
+  <link rel="stylesheet" type="text/css" href="../css/snap.css" />
+  <link rel="stylesheet" type="text/css" href="../css/mysnap.css" />
+
+  <!-- bootstrap CDN-->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> 
+
+
+  <!--============================ SPELLS ============================-->
+  <!-- angular CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js"></script>
+
+  <!-- bootstrap CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <!-- angular bootstrap ui -->
+  <script src="../js/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
+
+  <!-- core and controller -->
+  <script src="../js/angular/core.js"></script>
+  <script src="../js/angular/controllers/test.js"></script>
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <!-- Side Bar -->
+    <div class="snap-drawers">
+      <div class="snap-drawer snap-drawer-left">
+        <div>
+          <ul>
+            <li><a href="default.html">Default</a></li>
+            <li><a href="noDrag.html">No Drag</a></li>
+            <li><a href="#/mytrip"><span class="glyphicon glyphicon-pencil"></span>   My Trip</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content" class="snap-content">
+
+      <!-- Top Nav Bar -->
+      <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+        <div class="container-fluid">       
+          <a id="open-left" class="nav navbar-nav navbar-brand">
+            <span class="glyphicon glyphicon-align-justify"></span>
+          </a>
+
+          <div class="navbar-header">
+
+            <a class="navbar-brand" href="#/home" style="margin-left: 140px"><b>Tripster</b></a>      
+          </div>
+        </div>
+      </nav>
+
+      
+      <!-- Angular ng-view -->
+      <div ng-view></div>
+    </div>
+  </div>
+
+
+  <!--============================ SPELLS(cont.) ============================-->
+  <!-- snap -->
+  <script src="../js/snap/snap.js"></script>
+  <script src="../js/snap/snap.min.js"></script>
+  <script src="../js/snap/mysnap.js"></script>
+  <script type="text/javascript">
+  var snapper = new Snap({
+    element: document.getElementById('content'),
+    disable: 'right'
+  });
+  </script>
+</body>
+</html>
