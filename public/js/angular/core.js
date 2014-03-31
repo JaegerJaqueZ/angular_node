@@ -1,7 +1,8 @@
 
 var tripsterApp = angular.module('tripsterApp', [
 	'ngRoute',
-	'tripsterControllers'
+	'tripsterControllers',
+	'ui.bootstrap'
 	]);
 
 tripsterApp.config(['$routeProvider',

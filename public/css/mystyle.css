@@ -1,0 +1,19 @@
+.modal {
+	display: block; 
+}
+
+a {
+	cursor: pointer;
+}
+
+.modal-dialog{
+	margin: 0px;
+	width: 100%;
+	height: auto;
+	padding: 0;
+}
+
+.modal-content {
+	height: 100%;
+	border-radius: 0;
+}

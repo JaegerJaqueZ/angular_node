@@ -2,7 +2,9 @@
 <html ng-app="tripsterApp">
 <head>
   <!--============================ META ============================-->
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--============================ SCROLLS ============================-->
   <!-- snap -->
@@ -12,6 +14,8 @@
   <!-- bootstrap CDN-->
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> 
 
+  <!-- my style -->
+  <link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
 
   <!--============================ SPELLS ============================-->
   <!-- angular CDN -->
@@ -23,7 +27,7 @@
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
   <!-- angular bootstrap ui -->
-  <script src="../js/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
+  <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
 
   <!-- core and controller -->
   <script src="../js/angular/core.js"></script>
@@ -63,7 +67,7 @@
         </div>
       </nav>
 
-      
+
       <!-- Angular ng-view -->
       <div ng-view></div>
     </div>
