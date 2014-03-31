@@ -1,0 +1,34 @@
+<nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+	<div class="container-fluid">  
+		<a  class="nav navbar-nav navbar-brand" ng-click="cancel()">
+			cancel
+		</a>
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#" style="margin-left: 100px"><b>Add Place</b></a>      
+		</div>
+	</div>
+</nav>
+<!-- Modal -->
+<!--div class="modal-header"></div-->
+<div class="modal-body" ng-controller="newtrip02Ctrl">
+	<form role="form">
+		<input type="text" class="form-control" placeholder="Select Location" ng-model="place.name">
+		<!-- Search Trip -->
+		<div class="form-group">
+			<div class="input-group" ng-controller="newtrip03ModalCtrl">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+				<input type="text" ng-click="open()" class="form-control" placeholder="Select Location">
+			</div>
+			<br>
+			<label for="Date">Figure(s)</label><br>
+			<img src="../img/exmap.png" class="img-responsive img-thumbnail" alt="" style="margin-bottom: 15px">
+			<br>
+			<label for="placeDesc">Place Description</label>
+			<textarea type="placeDesc" class="form-control" id="placeDesc" rows="3" placeholder="Enter Place Description"></textarea>
+		</div>
+		<br>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="addPlace(place)">Done</button>
+</div>

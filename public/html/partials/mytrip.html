@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="ModalDemoCtrl">	
+<div class="container-fluid">	
 	<!-- Search Trip -->
 	<div class="input-group">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
@@ -6,7 +6,7 @@
 	</div>
 	<br>
 	<!-- Add -->
-	<div>
+	<div ng-controller="newtrip01ModalCtrl">
 		<button class="btn btn-success" ng-click="open()">
 			<span class="glyphicon glyphicon-plus"></span> Add New Trip
 		</button>
