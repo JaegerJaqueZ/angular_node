@@ -27,13 +27,13 @@
 				<option>หาดใหญ่</option>
 			</select>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="selectPlace(input)">Search</button>
+		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="findPlace()">Search</button>
 	</form>
 	<div class="form-group">
 		<br><br><br><br>
 		<label for="Places">Listed Place</label>		
 		<div class="list-group">
-			<a ng-repeat="place in foursqplaces" href="" class="list-group-item">
+			<a ng-repeat="place in foursqplaces" class="list-group-item" ng-click="selectPlace(place)">
 				{{place.venue.name}} <br>
 				{{place.venue.id}} <br>
 				{{place.venue.location.lat}} <br>

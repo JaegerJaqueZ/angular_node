@@ -5,6 +5,7 @@ var tripsterApp = angular.module('tripsterApp', [
 	'newtrip01Controllers',
 	'newtrip02Controllers',
 	'newtrip03Controllers',
+	'createtripService',
 	'ui.bootstrap'
 	]);
 
