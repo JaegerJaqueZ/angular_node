@@ -11,6 +11,7 @@
 <!-- Modal -->
 <!--div class="modal-header"></div-->
 <div class="modal-body" ng-controller="newtrip02Ctrl">
+	
 	<form role="form">
 		<!-- Search Trip -->
 		<div class="form-group">
@@ -22,12 +23,15 @@
 			<label for="Date">Figure(s)</label><br>
 			<img src="../img/exmap.png" class="img-responsive img-thumbnail" alt="" style="margin-bottom: 15px">
 			<br>
+
 			<label for="placeDesc">Place Description</label>
 			<textarea type="placeDesc" class="form-control" id="placeDesc" rows="3" placeholder="Enter Place Description" ng-model="description"></textarea>
 		</div>
 		<br>
 	</form>
+
 	<hr>
+
 	<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="confirmPlace()">Done</button>
 </div>
 <!-- <div class="modal-footer" ng-controller="newtrip02Ctrl">

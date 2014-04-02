@@ -3,6 +3,9 @@ var newtrip03Controllers = angular.module('newtrip03Controllers', []);
 newtrip03Controllers.controller('newtrip03Ctrl', function ($scope, $http, nameThisLocationService) {
 	//console.log("Now you are in newtrip03Ctrl");
 
+	//initialze search (can delete if want)
+	$scope.input = {name:'paragon', province:'กรุงเทพมหานคร'};
+
 	$scope.findPlace = function (){
 		//console.log("Now you are using findPlace() function");
 
@@ -18,11 +21,8 @@ newtrip03Controllers.controller('newtrip03Ctrl', function ($scope, $http, nameTh
 	
 	$scope.selectPlace = function (chosenplace){
 		//console.log("Now you are using selectPlace() function");
-		nameThisLocationService.setPlace(chosenplace);		
+		nameThisLocationService.setChosenPlace(chosenplace);		
 		//close modal
 		$scope.cancel();
 	}
 });
-
-
-var places = {name:'A',lat:13.90351,lng:100.52819,focus:true,draggable:false};
