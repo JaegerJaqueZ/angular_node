@@ -16,35 +16,55 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       }
       );
 
-  $scope.confirmPlace = function (){
-    console.log("Now you are using confirmPlace() function");
-    var chosenplace = nameThisLocationService.getChosenPlace();
-    // console.log(chosenplace.venue.id);
-    // console.log(chosenplace.venue.name);
-    // console.log(chosenplace.venue.location);
-    // console.log(chosenplace.venue.rating);    
-    // console.log($scope.description);
-    // var myjson = {
-    //   foursquare:{id:chosenplace.venue.id,name:chosenplace.venue.name,location:chosenplace.venue.location,rating:chosenplace.venue.rating},
-    //   description:$scope.description};
-    // console.log(myjson);
-    // $http({
-    //   method: 'POST', 
-    //   url: 'http://158.108.143.84:3000/place/create',
-    //   data: myjson
-    // }).
-    // success(function(data, status, headers, config) {
-    //   console.log(data);
-    // }).
-    // error(function(data, status, headers, config) {
-    //   alert("error");
-    // });   
 
-    //close modal
-    // $scope.cancel();
+  $scope.confirmPlace = function (){
+    // console.log("Now you are using confirmPlace() function");
+    $scope.isDisabled = true;
+    var chosenplace = nameThisLocationService.getChosenPlace();
+    var sbegintime = nameThisLocationService.getBeginTime();
+
+    var myjson = {
+      foursquare:{id:chosenplace.venue.id,name:chosenplace.venue.name,location:chosenplace.venue.location,categories:chosenplace.venue.categories[0].name,rating:chosenplace.venue.rating},
+      description:$scope.description,
+      begintime: sbegintime.getTime(),
+      trip_id:12345,
+      index:1,
+      user_id:111};
+
+      console.log(myjson);
+
+      //var deferred = $q.defer(); don't forget to inject $q on the top
+
+      $http({
+        method: 'POST', 
+        url: 'http://158.108.143.84:3000/place/create',
+        data: myjson,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).
+      success(function(data, status, headers, config) {
+        //deferred.resolve(data);
+        //console.log(data);
+        //close modal
+        $scope.cancel();
+      }).
+      error(function(data, status, headers, config) {
+        //deferred.resolve(data);
+        $scope.isDisabled = false;
+        alert("Place registration failed, please try again");
+
+      });   
+
+      // var myDataPromise = deferred.promise.then(function(data){
+      //   $scope.isDisabled = false;
+      //   console.log(data);
+      // });
+    
   }
 });
 
+
+
+//=============================== Modal ===============================
 var newtrip03ModalCtrl = function ($scope, $modal, $log) {
 
   $scope.open = function () {
@@ -60,5 +80,34 @@ var newtrip03ModalInstanceCtrl = function ($scope, $modalInstance) {
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+  };
+};
+
+//=============================== Time Picker ===============================
+var TimepickerDemoCtrl = function ($scope, nameThisLocationService) {
+
+  $scope.mytime = new Date();
+
+  //set start time to 00:00
+  $scope.mytime.setHours( 0 );
+  $scope.mytime.setMinutes( 0 );
+
+  //set hour and minute step for each click
+  $scope.hstep = 1;
+  $scope.mstep = 15;
+
+  //AM PM
+  $scope.ismeridian = true;
+  $scope.toggleMode = function() {
+    $scope.ismeridian = ! $scope.ismeridian;
+  };
+
+  $scope.changed = function () {
+    nameThisLocationService.setBeginTime($scope.mytime);
+    // console.log(nameThisLocationService.getBeginTime());
+    // console.log('Time changed to: ' + $scope.mytime);
+    // console.log($scope.mytime.getHours());
+    // console.log($scope.mytime.getMinutes());
+    // console.log($scope.mytime.getTime());
   };
 };

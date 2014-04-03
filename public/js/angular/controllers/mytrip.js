@@ -4,6 +4,8 @@ mytripControllers.controller('mytripCtrl', function ($scope, $http) {
 
 });
 
+
+//=============================== Modal ===============================
 var newtrip01ModalCtrl = function ($scope, $modal, $log) {
 
   $scope.open = function () {

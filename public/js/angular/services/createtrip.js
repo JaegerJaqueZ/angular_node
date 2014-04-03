@@ -21,6 +21,7 @@ var createtripService = angular.module('createtripService', []);
 
 createtripService.factory('nameThisLocationService', function(){
 
+	//=============================== Place and Places ===============================
 	var chosenplace = 
 	{venue:{
 		name:''
@@ -51,11 +52,25 @@ createtripService.factory('nameThisLocationService', function(){
 		places.push(obj);
 	}
 
+	//=============================== Time Picker for each place ===============================
+	var beginTime = new Date();
+
+	function getBeginTime(){
+		return beginTime;
+	}
+
+	function setBeginTime(time){
+		beginTime = time;
+	}
+
+	//=============================== Factory Return ===============================
 	return{
 		setChosenPlace: setChosenPlace,
 		getChosenPlace: getChosenPlace,
 		getPlaces: getPlaces,
-		addPlacetoPlaces: addPlacetoPlaces
+		addPlacetoPlaces: addPlacetoPlaces,
+		getBeginTime: getBeginTime,
+		setBeginTime: setBeginTime
 	}
 
 });

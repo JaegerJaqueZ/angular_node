@@ -25,6 +25,7 @@ newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameTh
       );
 });
 
+//=============================== Modal ===============================
 var newtrip02ModalCtrl = function ($scope, $modal, $log) {
 
   $scope.open = function () {

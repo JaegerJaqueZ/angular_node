@@ -1,0 +1,38 @@
+<!-- views/index.ejs -->
+
+<!doctype html>
+<html ng-app>
+<head>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+	<script src="indexctrl.js"></script>
+
+	<style>
+	body 		{ padding-top:80px; }
+	</style>
+</head>
+<body ng-controller="testCtrl">
+	<div class="container">
+
+		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="penguinpedzii()">Test</button>
+
+		<input type="text" ng-model="yourName" placeholder="Enter a name here">
+		<hr>
+		<h1>Hello {{yourName}}!</h1>
+
+
+		<div class="jumbotron text-center">
+			<h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+			<p>Login or Register with:</p>
+
+			<a href="158.108.143.84:3000/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+
+		</div>
+
+	</div>
+</body>
+</html>	

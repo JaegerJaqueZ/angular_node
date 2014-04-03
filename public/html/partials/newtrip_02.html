@@ -11,28 +11,36 @@
 <!-- Modal -->
 <!--div class="modal-header"></div-->
 <div class="modal-body" ng-controller="newtrip02Ctrl">
-	
-	<form role="form">
-		<!-- Search Trip -->
-		<div class="form-group">
-			<div class="input-group" ng-controller="newtrip03ModalCtrl">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
-				<input type="text" ng-click="open()" class="form-control" placeholder='Please Select Place' value="{{value}}">
+	<fieldset ng-disabled="isDisabled">
+		<form role="form">
+			<!-- Search Trip -->
+			<div class="form-group">
+				<div class="input-group" ng-controller="newtrip03ModalCtrl">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+					<input type="text" ng-click="open()" class="form-control" placeholder='Please Select Place' value="{{value}}">
+				</div>
+				<br>
+				<label for="Date">Figure(s)</label><br>
+				<img src="../img/exmap.png" class="img-responsive img-thumbnail" alt="" style="margin-bottom: 15px">
+				<br>
+
+				<div ng-controller="TimepickerDemoCtrl">
+					<div ng-model="mytime" ng-change="changed()" style="display:inline-block">
+						<timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+					</div>
+				</div>
+
+				<br>
+				<label for="placeDesc">Place Description</label>
+				<textarea type="placeDesc" class="form-control" id="placeDesc" rows="3" placeholder="Enter Place Description" ng-model="description"></textarea>
 			</div>
 			<br>
-			<label for="Date">Figure(s)</label><br>
-			<img src="../img/exmap.png" class="img-responsive img-thumbnail" alt="" style="margin-bottom: 15px">
-			<br>
+		</form>
 
-			<label for="placeDesc">Place Description</label>
-			<textarea type="placeDesc" class="form-control" id="placeDesc" rows="3" placeholder="Enter Place Description" ng-model="description"></textarea>
-		</div>
-		<br>
-	</form>
-
-	<hr>
-
-	<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="confirmPlace()">Done</button>
+		<hr>
+		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="confirmPlace()">Done</button>
+	</fieldset>
+	
 </div>
 <!-- <div class="modal-footer" ng-controller="newtrip02Ctrl">
 	<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="confirmPlace()">Done</button>
