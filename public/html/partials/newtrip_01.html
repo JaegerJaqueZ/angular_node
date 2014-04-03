@@ -24,17 +24,16 @@
 		<div class="form-group">
 			<label for="Places">Place(s)</label>		
 			<div class="list-group">
-				<a ng-repeat="place in places" class="list-group-item">
+				<a ng-repeat="place in places" class="list-group-item" ng-click="open(place)">
 					{{place.foursquare.name}}
 					<span class="glyphicon glyphicon-chevron-right" style="float: right"></span>
 				</a>
-				<div ng-controller="newtrip02ModalCtrl">
+				<div>
 					<button class="btn btn-default btn-lg btn-block" ng-click="open()">
 						<span class="glyphicon glyphicon-plus"></span>
 					</button>
 				</div>
 			</div>
-
 		</div>
 
 

@@ -2,6 +2,10 @@ var newtrip02Controllers = angular.module('newtrip02Controllers', []);
 
 newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameThisLocationService) {
 
+  $scope.value = nameThisLocationService.getChosenPlace().foursquare.name;
+  $scope.description = nameThisLocationService.getChosenPlace().description;
+
+  // place will follow the change in chosenplace in service 
   $scope.$watch(
       // This is the listener function
       function() {
@@ -11,7 +15,7 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       // This is the change handler
       function(newValue, oldValue) {
         if(newValue!==oldValue) {
-          $scope.value = newValue.venue.name;
+          $scope.value = newValue.foursquare.name;
         }
       }
       );
@@ -19,13 +23,12 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
 
   $scope.confirmPlace = function (){
     // console.log("Now you are using confirmPlace() function");
-    $scope.isDisabled = true;
-    var chosenplace = nameThisLocationService.getChosenPlace();
+    // $scope.isDisabled = true;
     var servicebegintime = nameThisLocationService.getBeginTime();
     var serviceendtime = nameThisLocationService.getEndTime();
 
     var myjson = {
-      foursquare:{id:chosenplace.venue.id,name:chosenplace.venue.name,location:chosenplace.venue.location,categories:chosenplace.venue.categories[0].name,rating:chosenplace.venue.rating},
+      foursquare:nameThisLocationService.getChosenPlace().foursquare,
       description:$scope.description,
       begintime:servicebegintime.getTime(),
       endtime:serviceendtime.getTime(),
@@ -33,30 +36,30 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       index:1,
       user_id:111};
 
-      console.log(myjson);
+      // console.log(myjson);
 
       //var deferred = $q.defer(); don't forget to inject $q on the top
 
-      $http({
-        method: 'POST', 
-        url: 'http://158.108.143.84:3000/place/create',
-        data: myjson,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }).
-      success(function(data, status, headers, config) {
-        //deferred.resolve(data);
-        //console.log(data);
-        //close modal
+      // $http({
+      //   method: 'POST', 
+      //   url: 'http://158.108.143.84:3000/place/create',
+      //   data: myjson,
+      //   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      // }).
+      // success(function(data, status, headers, config) {
+      //   //deferred.resolve(data);
+      //   //console.log(data);
+      //   //close modal
         nameThisLocationService.addPlacetoPlaces(myjson);
         $scope.cancel();
-      }).
-      error(function(data, status, headers, config) {
-        //deferred.resolve(data);
-        $scope.isDisabled = false;
-        alert("Place registration failed, please try again");
-        nameThisLocationService.addPlacetoPlaces(myjson);
+      // }).
+      // error(function(data, status, headers, config) {
+      //   //deferred.resolve(data);
+      //   $scope.isDisabled = false;
+      //   alert("Place registration failed, please try again");
+        // nameThisLocationService.addPlacetoPlaces(myjson);
 
-      });   
+      // });   
 
       // var myDataPromise = deferred.promise.then(function(data){
       //   $scope.isDisabled = false;

@@ -22,10 +22,23 @@ var createtripService = angular.module('createtripService', []);
 createtripService.factory('nameThisLocationService', function(){
 
 	//=============================== Place and Places ===============================
+	// var chosenplace = 
+	// {
+	// 	venue:{
+	// 	name:''
+	// 	}
+	// };
+
 	var chosenplace = 
-	{venue:{
-		name:''
-	}};
+	{
+		foursquare:{id:'',name:'',location:'',categories:'',rating:''},
+		description:'',
+		begintime:'', 
+		endtime:'', 
+		trip_id:'',
+		index:'',
+		user_id:''
+	};
 
 	// var places = [
 	// { name:'koh wat' },
@@ -34,6 +47,7 @@ createtripService.factory('nameThisLocationService', function(){
 
 	// var places = [
 	// {id:"4e4951d614959d51c187ac11",name:"วอมอัฟ คาเฟ่",location:"Thailand",categories:"ผับบาร์",rating:7.3}
+	// ];
 	
 
 	var places = [
@@ -46,7 +60,7 @@ createtripService.factory('nameThisLocationService', function(){
 		index:1,
 		user_id:111
 	}
-	];
+	];	
 
 	function setChosenPlace(selectedplace){
 		chosenplace = selectedplace;
@@ -61,6 +75,30 @@ createtripService.factory('nameThisLocationService', function(){
 
 	function getPlaces(){
 		return places;
+	}
+
+	function clearChosenPlace(){
+		chosenplace = {
+			foursquare:{id:'',name:'',location:'',categories:'',rating:''},
+			description:'',
+			begintime:'', 
+			endtime:'', 
+			trip_id:'',
+			index:'',
+			user_id:''
+		};
+	}
+
+	function adjustPlaceObject(selectedplace){
+		return {
+			foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
+			description:'',
+			begintime:'', 
+			endtime:'', 
+			trip_id:'',
+			index:'',
+			user_id:''
+		};
 	}
 
 	function addPlacetoPlaces(obj){
@@ -98,7 +136,9 @@ createtripService.factory('nameThisLocationService', function(){
 		getBeginTime: getBeginTime,
 		setBeginTime: setBeginTime,
 		getEndTime: getEndTime,
-		setEndTime: setEndTime
+		setEndTime: setEndTime,
+		adjustPlaceObject: adjustPlaceObject,
+		clearChosenPlace: clearChosenPlace
 	}
 
 });

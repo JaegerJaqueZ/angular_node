@@ -1,6 +1,6 @@
 var newtrip01Controllers = angular.module('newtrip01Controllers', []);
 
-newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameThisLocationService) {
+newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameThisLocationService , $modal) {
   // $scope.places = {
   // obj1:{
   //   name:'koh wat'  
@@ -23,6 +23,23 @@ newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameTh
         }
       }
       );
+
+  //open modal for place that already put in places array in service
+  $scope.open = function (place) {
+    if(place == null){
+      // console.log("TRUE");
+      nameThisLocationService.clearChosenPlace();
+    }
+    else{
+      //console.log("FALSE");
+      nameThisLocationService.setChosenPlace(place);
+    }
+    var modalInstance = $modal.open({
+      templateUrl: 'partials/newtrip_02.html',
+      controller: newtrip02ModalInstanceCtrl,
+      backdrop: false
+    });
+  };
 });
 
 //=============================== Modal ===============================
@@ -40,6 +57,8 @@ var newtrip02ModalCtrl = function ($scope, $modal, $log) {
 var newtrip02ModalInstanceCtrl = function ($scope, $modalInstance) {
 
   $scope.cancel = function () {
+    // $modalInstance.windowClass = "modal out animated slideInLeft";
     $modalInstance.dismiss('cancel');
+
   };
 };
