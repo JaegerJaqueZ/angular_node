@@ -24,9 +24,8 @@
 		<div class="form-group">
 			<label for="Places">Place(s)</label>		
 			<div class="list-group">
-				<a ng-repeat="place in places" href="" class="list-group-item">
-					<!-- {{crplace.foursquare.name}} -->
-					{{place.name}}
+				<a ng-repeat="place in places" class="list-group-item">
+					{{place.foursquare.name}}
 					<span class="glyphicon glyphicon-chevron-right" style="float: right"></span>
 				</a>
 				<div ng-controller="newtrip02ModalCtrl">
@@ -49,7 +48,7 @@
 	</form>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="addTrip(dt)">Save</button>
+	<button type="button" class="btn btn-primary btn-lg btn-block">Save</button>
 	<button type="submit" class="btn btn-success btn-lg btn-block">Publish</button>
 	<!-- <button type="button" class="btn btn-danger btn-lg btn-block">Delete</button> -->
 </div>

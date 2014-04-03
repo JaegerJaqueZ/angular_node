@@ -24,10 +24,20 @@
 				<img src="../img/exmap.png" class="img-responsive img-thumbnail" alt="" style="margin-bottom: 15px">
 				<br>
 
-				<div ng-controller="TimepickerDemoCtrl">
-					<div ng-model="mytime" ng-change="changed()" style="display:inline-block">
-						<timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-					</div>
+				<div ng-controller="timepickerCtrl">
+					<label for="Date">Time Begin</label><br>
+					<center>
+						<div ng-model="begintime" ng-change="begintimechanged()" style="display:inline-block">
+							<timepicker hour-step="hstep" minute-step="mstep" show-meridian="begintimeismeridian"></timepicker>
+						</div>
+					</center>
+					<br>
+					<label for="Date">Time End</label><br>
+					<center>
+						<div ng-model="endtime" ng-change="endtimechanged()" style="display:inline-block">
+							<timepicker hour-step="hstep" minute-step="mstep" show-meridian="endtimeismeridian"></timepicker>
+						</div>
+					</center>
 				</div>
 
 				<br>

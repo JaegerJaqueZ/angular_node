@@ -21,12 +21,14 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
     // console.log("Now you are using confirmPlace() function");
     $scope.isDisabled = true;
     var chosenplace = nameThisLocationService.getChosenPlace();
-    var sbegintime = nameThisLocationService.getBeginTime();
+    var servicebegintime = nameThisLocationService.getBeginTime();
+    var serviceendtime = nameThisLocationService.getEndTime();
 
     var myjson = {
       foursquare:{id:chosenplace.venue.id,name:chosenplace.venue.name,location:chosenplace.venue.location,categories:chosenplace.venue.categories[0].name,rating:chosenplace.venue.rating},
       description:$scope.description,
-      begintime: sbegintime.getTime(),
+      begintime:servicebegintime.getTime(),
+      endtime:serviceendtime.getTime(),
       trip_id:12345,
       index:1,
       user_id:111};
@@ -45,12 +47,14 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
         //deferred.resolve(data);
         //console.log(data);
         //close modal
+        nameThisLocationService.addPlacetoPlaces(myjson);
         $scope.cancel();
       }).
       error(function(data, status, headers, config) {
         //deferred.resolve(data);
         $scope.isDisabled = false;
         alert("Place registration failed, please try again");
+        nameThisLocationService.addPlacetoPlaces(myjson);
 
       });   
 
@@ -84,30 +88,42 @@ var newtrip03ModalInstanceCtrl = function ($scope, $modalInstance) {
 };
 
 //=============================== Time Picker ===============================
-var TimepickerDemoCtrl = function ($scope, nameThisLocationService) {
+var timepickerCtrl = function ($scope, nameThisLocationService) {
 
-  $scope.mytime = new Date();
+  $scope.begintime = new Date();
+  $scope.endtime = new Date();
 
   //set start time to 00:00
-  $scope.mytime.setHours( 0 );
-  $scope.mytime.setMinutes( 0 );
+  $scope.begintime.setHours( 0 );
+  $scope.begintime.setMinutes( 0 );
+  $scope.begintime.setSeconds( 0 );
+  $scope.endtime.setHours( 0 );
+  $scope.endtime.setMinutes( 0 );
+  $scope.endtime.setSeconds( 0 );
 
   //set hour and minute step for each click
   $scope.hstep = 1;
   $scope.mstep = 15;
 
   //AM PM
-  $scope.ismeridian = true;
+  $scope.begintimeismeridian = true;
   $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
+    $scope.begintimeismeridian = ! $scope.begintimeismeridian;
+  };
+  $scope.endtimeismeridian = true;
+  $scope.toggleMode = function() {
+    $scope.endtimeismeridian = ! $scope.endtimeismeridian;
   };
 
-  $scope.changed = function () {
-    nameThisLocationService.setBeginTime($scope.mytime);
+  $scope.begintimechanged = function () {
     // console.log(nameThisLocationService.getBeginTime());
-    // console.log('Time changed to: ' + $scope.mytime);
-    // console.log($scope.mytime.getHours());
-    // console.log($scope.mytime.getMinutes());
-    // console.log($scope.mytime.getTime());
+    nameThisLocationService.setBeginTime($scope.begintime);
+    // console.log(nameThisLocationService.getBeginTime());
+  };
+
+  $scope.endtimechanged = function () {
+    // console.log(nameThisLocationService.getEndTime());
+    nameThisLocationService.setEndTime($scope.endtime);
+    // console.log(nameThisLocationService.getEndTime());
   };
 };
