@@ -33,7 +33,7 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       begintime:servicebegintime.getTime(),
       endtime:serviceendtime.getTime(),
       trip_id:12345,
-      index:1,
+      index:nameThisLocationService.getChosenPlace().index,
       user_id:111};
 
       // console.log(myjson);
@@ -50,7 +50,14 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       //   //deferred.resolve(data);
       //   //console.log(data);
       //   //close modal
-        nameThisLocationService.addPlacetoPlaces(myjson);
+      console.log(myjson.index);
+        if(myjson.index == null){
+          console.log("test");
+          nameThisLocationService.addPlacetoPlaces(myjson);          
+        }
+        else{         
+          nameThisLocationService.updatePlace(myjson, myjson.index) 
+        }
         $scope.cancel();
       // }).
       // error(function(data, status, headers, config) {

@@ -22,33 +22,12 @@ var createtripService = angular.module('createtripService', []);
 createtripService.factory('nameThisLocationService', function(){
 
 	//=============================== Place and Places ===============================
-	// var chosenplace = 
-	// {
-	// 	venue:{
-	// 	name:''
-	// 	}
-	// };
-
-	var chosenplace = 
-	{
-		foursquare:{id:'',name:'',location:'',categories:'',rating:''},
-		description:'',
-		begintime:'', 
-		endtime:'', 
-		trip_id:'',
-		index:'',
-		user_id:''
-	};
+	var chosenplace = {};
 
 	// var places = [
 	// { name:'koh wat' },
 	// { name:'koh tuan'}
-	// ];
-
-	// var places = [
-	// {id:"4e4951d614959d51c187ac11",name:"วอมอัฟ คาเฟ่",location:"Thailand",categories:"ผับบาร์",rating:7.3}
-	// ];
-	
+	// ];	
 
 	var places = [
 	{
@@ -57,7 +36,7 @@ createtripService.factory('nameThisLocationService', function(){
 		begintime: 1396532315302, 
 		endtime: 1396508400769, 
 		trip_id:12345,
-		index:1,
+		index:0,
 		user_id:111
 	}
 	];	
@@ -84,7 +63,7 @@ createtripService.factory('nameThisLocationService', function(){
 			begintime:'', 
 			endtime:'', 
 			trip_id:'',
-			index:'',
+			index:null,
 			user_id:''
 		};
 	}
@@ -96,16 +75,21 @@ createtripService.factory('nameThisLocationService', function(){
 			begintime:'', 
 			endtime:'', 
 			trip_id:'',
-			index:'',
+			index:null,
 			user_id:''
 		};
 	}
 
 	function addPlacetoPlaces(obj){
-		//places.push({name:'koh ped'});
+		console.log(obj.index);
+		obj.index = places.length;
+		console.log(obj.index);
 		places.push(obj);
 	}
 
+	function updatePlace(obj, index){
+		places[index] = obj;
+	}
 	//=============================== Time Picker for each place ===============================
 	var beginTime = new Date();
 
@@ -138,7 +122,8 @@ createtripService.factory('nameThisLocationService', function(){
 		getEndTime: getEndTime,
 		setEndTime: setEndTime,
 		adjustPlaceObject: adjustPlaceObject,
-		clearChosenPlace: clearChosenPlace
+		clearChosenPlace: clearChosenPlace,
+		updatePlace: updatePlace
 	}
 
 });
