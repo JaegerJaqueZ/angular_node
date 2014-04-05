@@ -56,10 +56,11 @@ var newtrip02ModalCtrl = function ($scope, $modal, $log) {
   };
 };
 
-var newtrip02ModalInstanceCtrl = function ($scope, $modalInstance) {
+var newtrip02ModalInstanceCtrl = function ($scope, $modalInstance, nameThisLocationService) {
 
   $scope.cancel = function () {
     // $modalInstance.windowClass = "modal out animated slideInLeft";
+    nameThisLocationService.clearChosenPlace();
     $modalInstance.dismiss('cancel');
 
   };

@@ -1,7 +1,7 @@
 var mytripControllers = angular.module('mytripControllers', []);
 
 mytripControllers.controller('mytripCtrl', function ($scope, $http) {
-
+	
 });
 
 

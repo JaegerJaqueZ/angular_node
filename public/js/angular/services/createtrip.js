@@ -67,8 +67,8 @@ createtripService.factory('nameThisLocationService', function(){
 		chosenplace = {
 			foursquare:{id:'',name:'',location:'',categories:'',rating:''},
 			description:'',
-			begintime:'', 
-			endtime:'', 
+			begintime:null, 
+			endtime:null, 
 			trip_id:'',
 			index:null,
 			user_id:''
@@ -88,8 +88,8 @@ createtripService.factory('nameThisLocationService', function(){
 			return {
 			foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
 			description:'',
-			begintime:'', 
-			endtime:'', 
+			begintime:chosenplace.begintime, 
+			endtime:chosenplace.endtime, 
 			trip_id:'',
 			index:chosenplace.index,
 			user_id:''
@@ -99,8 +99,8 @@ createtripService.factory('nameThisLocationService', function(){
 			return {
 				foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
 				description:'',
-				begintime:'', 
-				endtime:'', 
+				begintime:null, 
+				endtime:null, 
 				trip_id:'',
 				index:null,
 				user_id:''
@@ -118,25 +118,25 @@ createtripService.factory('nameThisLocationService', function(){
 	function updatePlace(obj, index){
 		places[index] = obj;
 	}
-	//=============================== Time Picker for each place ===============================
-	var beginTime = new Date();
+	//=============================== Time for each place ===============================
+	var beginTimeTemp = null;
 
-	var endTime = new Date();
-
-	function getBeginTime(){
-		return beginTime;
+	var endTimeTemp = null;
+	
+	function getBeginTimeTemp(){
+		return beginTimeTemp;
 	}
 
-	function setBeginTime(time){
-		beginTime = time;
+	function setBeginTimeTemp(time){
+		beginTimeTemp = time;
 	}
 
-	function getEndTime(){
-		return endTime;
+	function getEndTimeTemp(){
+		return endTimeTemp;
 	}
 
-	function setEndTime(time){
-		endTime = time;
+	function setEndTimeTemp(time){
+		endTimeTemp = time;
 	}
 
 	//=============================== Factory Return ===============================
@@ -145,10 +145,10 @@ createtripService.factory('nameThisLocationService', function(){
 		getChosenPlace: getChosenPlace,
 		getPlaces: getPlaces,
 		addPlacetoPlaces: addPlacetoPlaces,
-		getBeginTime: getBeginTime,
-		setBeginTime: setBeginTime,
-		getEndTime: getEndTime,
-		setEndTime: setEndTime,
+		getBeginTimeTemp: getBeginTimeTemp,
+		setBeginTimeTemp: setBeginTimeTemp,
+		getEndTimeTemp: getEndTimeTemp,
+		setEndTimeTemp: setEndTimeTemp,
 		adjustPlaceObject: adjustPlaceObject,
 		clearChosenPlace: clearChosenPlace,
 		updatePlace: updatePlace,
