@@ -51,7 +51,7 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       //   //console.log(data);
       //   //close modal
       console.log(myjson.index);
-        if(myjson.index == null){
+        if(nameThisLocationService.getIsEditing() == false){
           console.log("test");
           nameThisLocationService.addPlacetoPlaces(myjson);          
         }

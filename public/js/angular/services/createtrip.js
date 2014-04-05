@@ -21,6 +21,17 @@ var createtripService = angular.module('createtripService', []);
 
 createtripService.factory('nameThisLocationService', function(){
 
+	//=============================== Check whether user is editing or adding new place===============================
+	var isEditing = false;
+
+	function setIsEditing(temp){
+		isEditing = temp;
+	}
+
+	function getIsEditing(){
+		return isEditing;
+	}
+
 	//=============================== Place and Places ===============================
 	var chosenplace = {};
 
@@ -52,10 +63,6 @@ createtripService.factory('nameThisLocationService', function(){
 		return chosenplace;
 	}
 
-	function getPlaces(){
-		return places;
-	}
-
 	function clearChosenPlace(){
 		chosenplace = {
 			foursquare:{id:'',name:'',location:'',categories:'',rating:''},
@@ -68,22 +75,43 @@ createtripService.factory('nameThisLocationService', function(){
 		};
 	}
 
+	function getPlaces(){
+		return places;
+	}
+
+	function clearPlaces(){
+		places = [];
+	}
+
 	function adjustPlaceObject(selectedplace){
-		return {
+		if(isEditing == true){
+			return {
 			foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
 			description:'',
 			begintime:'', 
 			endtime:'', 
 			trip_id:'',
-			index:null,
+			index:chosenplace.index,
 			user_id:''
-		};
+			};
+		}
+		else{
+			return {
+				foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
+				description:'',
+				begintime:'', 
+				endtime:'', 
+				trip_id:'',
+				index:null,
+				user_id:''
+			};
+		}
 	}
 
 	function addPlacetoPlaces(obj){
-		console.log(obj.index);
+		//console.log(obj.index);
 		obj.index = places.length;
-		console.log(obj.index);
+		//console.log(obj.index);
 		places.push(obj);
 	}
 
@@ -123,7 +151,10 @@ createtripService.factory('nameThisLocationService', function(){
 		setEndTime: setEndTime,
 		adjustPlaceObject: adjustPlaceObject,
 		clearChosenPlace: clearChosenPlace,
-		updatePlace: updatePlace
+		updatePlace: updatePlace,
+		setIsEditing: setIsEditing,
+		getIsEditing: getIsEditing,
+		clearPlaces: clearPlaces
 	}
 
 });

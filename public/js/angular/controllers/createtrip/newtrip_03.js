@@ -21,7 +21,7 @@ newtrip03Controllers.controller('newtrip03Ctrl', function ($scope, $http, nameTh
 	
 	$scope.selectPlace = function (chosenplace){
 		//console.log("Now you are using selectPlace() function");
-		nameThisLocationService.setChosenPlace(nameThisLocationService.adjustPlaceObject(chosenplace));	
+		nameThisLocationService.setChosenPlace(nameThisLocationService.adjustPlaceObject(chosenplace));
 		//close modal
 		$scope.cancel();
 	}

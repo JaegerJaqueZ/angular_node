@@ -51,7 +51,7 @@ a {
 
 /* make colapse buttons always show but need to put id #login-btn to that tag*/
 @media (min-width: 768px) {
-  #login-btn {
+  #fix-btn {
     display: block;
   }
 

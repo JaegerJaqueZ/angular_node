@@ -1,6 +1,6 @@
 var newtrip01Controllers = angular.module('newtrip01Controllers', []);
 
-newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameThisLocationService , $modal) {
+newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameThisLocationService, $modal) {
   // $scope.places = {
   // obj1:{
   //   name:'koh wat'  
@@ -28,10 +28,12 @@ newtrip01Controllers.controller('newtrip01Ctrl', function ($scope, $http, nameTh
   $scope.open = function (place) {
     if(place == null){
       // console.log("TRUE");
+      nameThisLocationService.setIsEditing(false);
       nameThisLocationService.clearChosenPlace();
     }
     else{
       //console.log("FALSE");
+      nameThisLocationService.setIsEditing(true);
       nameThisLocationService.setChosenPlace(place);
     }
     var modalInstance = $modal.open({
