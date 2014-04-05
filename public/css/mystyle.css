@@ -29,3 +29,33 @@ a {
 .modal.fade.in {
   left: 0%;
 }​*/
+
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    height:50px;
+}
+
+.navbar-header .navbar-toggle {
+    float:left;
+    margin-top:-10px;
+}
+
+.navbar-brand {
+	float:none;
+	margin-left:-60px;
+}
+
+/* make colapse buttons always show but need to put id #login-btn to that tag*/
+@media (min-width: 768px) {
+  #login-btn {
+    display: block;
+  }
+
+  #sesion.collapse {
+    display: none !important;
+  }
+}
