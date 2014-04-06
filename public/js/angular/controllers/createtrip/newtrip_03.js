@@ -1,6 +1,6 @@
 var newtrip03Controllers = angular.module('newtrip03Controllers', []);
 
-newtrip03Controllers.controller('newtrip03Ctrl', function ($scope, $http, nameThisLocationService) {
+newtrip03Controllers.controller('newtrip03Ctrl', function ($scope, $http, createtripFactory) {
 	//console.log("Now you are in newtrip03Ctrl");
 
 	//initialze search (can delete if want)
@@ -21,7 +21,7 @@ newtrip03Controllers.controller('newtrip03Ctrl', function ($scope, $http, nameTh
 	
 	$scope.selectPlace = function (chosenplace){
 		//console.log("Now you are using selectPlace() function");
-		nameThisLocationService.setChosenPlace(nameThisLocationService.adjustPlaceObject(chosenplace));
+		createtripFactory.setChosenPlace(createtripFactory.adjustPlaceObject(chosenplace));
 		//close modal
 		$scope.cancel();
 	}

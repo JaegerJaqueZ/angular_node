@@ -1,6 +1,6 @@
 // var createtripService = angular.module('createtripService', []);
 
-// createtripService.service('nameThisLocationService', function(){
+// createtripService.service('createtripFactory', function(){
 
 //     this.chosenplace = 
 //     {venue:{
@@ -19,17 +19,88 @@
 
 var createtripService = angular.module('createtripService', []);
 
-createtripService.factory('nameThisLocationService', function(){
+createtripService.factory('createtripFactory', function(){
+//++++++++++++++++++++++++++++++++++++++++++++++ Trip ++++++++++++++++++++++++++++++++++++++++++++++//
+	//=============================== Check whether user is editing or adding new trip===============================
+	var isEditingTrip = false;
 
-	//=============================== Check whether user is editing or adding new place===============================
-	var isEditing = false;
-
-	function setIsEditing(temp){
-		isEditing = temp;
+	function setisEditingTrip(temp){
+		isEditingTrip = temp;
 	}
 
-	function getIsEditing(){
-		return isEditing;
+	function getisEditingTrip(){
+		return isEditingTrip;
+	}
+	//=============================== Trip and Trips ===============================
+	var trips = [
+	{
+		name:"เที่ยวไปปี้ไปกับอ๊อฟพิชยู้ตตต",
+		description:"3วัน มันส์ตลอด",
+		begindate:1396532315302,
+		enddate:1396508400769,
+		trip_id:12345,
+		index:0,
+		user_id:111
+	}
+	];
+
+	function getTrips(){
+		return trips;
+	}
+
+	var chosentrip = {};
+
+	function setChosenTrip(selectedtrip){
+		chosentrip = selectedtrip;
+	}
+
+	function getChosenTrip(){
+		return chosentrip;
+	}
+
+	function clearChosenTrip(){
+		chosentrip = {
+			tripname:'',
+			description:'',
+			begindate:null,
+			enddate:null,
+			trip_id:'',
+			index:null,
+			user_id:''
+		};		
+	}
+
+	//=============================== Date for each Trip ===============================
+	var beginDateTemp = new Date();
+
+	var endDateTemp = new Date();
+	
+	function getBeginDateTemp(){
+		return beginDateTemp;
+	}
+
+	function setBeginDateTemp(date){
+		beginDateTemp = date;
+	}
+
+	function getEndDateTemp(){
+		return endDateTemp;
+	}
+
+	function setEndDateTemp(date){
+		endDateTemp = date;
+	}
+
+//++++++++++++++++++++++++++++++++++++++++++++++ Place and Places ++++++++++++++++++++++++++++++++++++++++++++++//
+	//=============================== Check whether user is editing or adding new place===============================
+	var isEditingPlace = false;
+
+	function setisEditingPlace(temp){
+		isEditingPlace = temp;
+	}
+
+	function getisEditingPlace(){
+		return isEditingPlace;
 	}
 
 	//=============================== Place and Places ===============================
@@ -84,15 +155,15 @@ createtripService.factory('nameThisLocationService', function(){
 	}
 
 	function adjustPlaceObject(selectedplace){
-		if(isEditing == true){
+		if(isEditingPlace == true){
 			return {
-			foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
-			description:'',
-			begintime:chosenplace.begintime, 
-			endtime:chosenplace.endtime, 
-			trip_id:'',
-			index:chosenplace.index,
-			user_id:''
+				foursquare:{id:selectedplace.venue.id,name:selectedplace.venue.name,location:selectedplace.venue.location,categories:selectedplace.venue.categories[0].name,rating:selectedplace.venue.rating},
+				description:'',
+				begintime:chosenplace.begintime, 
+				endtime:chosenplace.endtime, 
+				trip_id:'',
+				index:chosenplace.index,
+				user_id:''
 			};
 		}
 		else{
@@ -141,6 +212,19 @@ createtripService.factory('nameThisLocationService', function(){
 
 	//=============================== Factory Return ===============================
 	return{
+		//Trip
+		getBeginDateTemp: getBeginDateTemp,
+		setBeginDateTemp: setBeginDateTemp,
+		getEndDateTemp: getEndDateTemp,
+		setEndDateTemp: setEndDateTemp,
+		setisEditingTrip: setisEditingTrip,
+		getisEditingTrip: getisEditingTrip,
+		getTrips: getTrips,
+		setChosenTrip: setChosenTrip,
+		getChosenTrip: getChosenTrip,
+		clearChosenTrip: clearChosenTrip,
+
+		//Place and Places
 		setChosenPlace: setChosenPlace,
 		getChosenPlace: getChosenPlace,
 		getPlaces: getPlaces,
@@ -152,8 +236,8 @@ createtripService.factory('nameThisLocationService', function(){
 		adjustPlaceObject: adjustPlaceObject,
 		clearChosenPlace: clearChosenPlace,
 		updatePlace: updatePlace,
-		setIsEditing: setIsEditing,
-		getIsEditing: getIsEditing,
+		setisEditingPlace: setisEditingPlace,
+		getisEditingPlace: getisEditingPlace,
 		clearPlaces: clearPlaces
 	}
 

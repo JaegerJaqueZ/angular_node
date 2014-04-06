@@ -1,16 +1,16 @@
 var newtrip02Controllers = angular.module('newtrip02Controllers', []);
 
-newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameThisLocationService) {
+newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, createtripFactory) {
 
-  $scope.value = nameThisLocationService.getChosenPlace().foursquare.name;
-  $scope.description = nameThisLocationService.getChosenPlace().description;
+  $scope.value = createtripFactory.getChosenPlace().foursquare.name;
+  $scope.description = createtripFactory.getChosenPlace().description;
 
   // place will follow the change in chosenplace in service 
   $scope.$watch(
       // This is the listener function
       function() {
-        //console.log(nameThisLocationService.getChosenPlace());
-        return nameThisLocationService.getChosenPlace();
+        //console.log(createtripFactory.getChosenPlace());
+        return createtripFactory.getChosenPlace();
       },
       // This is the change handler
       function(newValue, oldValue) {
@@ -26,12 +26,12 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
     // $scope.isDisabled = true;
 
     var myjson = {
-      foursquare:nameThisLocationService.getChosenPlace().foursquare,
+      foursquare:createtripFactory.getChosenPlace().foursquare,
       description:$scope.description,
-      begintime:nameThisLocationService.getBeginTimeTemp(),
-      endtime:nameThisLocationService.getEndTimeTemp(),
+      begintime:createtripFactory.getBeginTimeTemp(),
+      endtime:createtripFactory.getEndTimeTemp(),
       trip_id:12345,
-      index:nameThisLocationService.getChosenPlace().index,
+      index:createtripFactory.getChosenPlace().index,
       user_id:111};
 
       // console.log(myjson);
@@ -49,12 +49,11 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       //   //console.log(data);
       //   //close modal
       // console.log(myjson.index);
-      if(nameThisLocationService.getIsEditing() == false){
-        console.log("test");
-        nameThisLocationService.addPlacetoPlaces(myjson);          
+      if(createtripFactory.getisEditingPlace() == false){
+        createtripFactory.addPlacetoPlaces(myjson);          
       }
       else{         
-        nameThisLocationService.updatePlace(myjson, myjson.index) 
+        createtripFactory.updatePlace(myjson, myjson.index) 
       }
       $scope.cancel();
       // }).
@@ -62,7 +61,7 @@ newtrip02Controllers.controller('newtrip02Ctrl', function ($scope, $http, nameTh
       //   //deferred.resolve(data);
       //   $scope.isDisabled = false;
       //   alert("Place registration failed, please try again");
-        // nameThisLocationService.addPlacetoPlaces(myjson);
+        // createtripFactory.addPlacetoPlaces(myjson);
 
       // });   
 
@@ -96,9 +95,9 @@ var newtrip03ModalInstanceCtrl = function ($scope, $modalInstance) {
 };
 
 //=============================== Time Picker ===============================
-var timepickerCtrl = function ($scope, nameThisLocationService) {
+var timepickerCtrl = function ($scope, createtripFactory) {
 
-  if(nameThisLocationService.getIsEditing() == false){
+  if(createtripFactory.getisEditingPlace() == false){
     $scope.begintime = new Date();
     $scope.endtime = new Date();
 
@@ -111,24 +110,24 @@ var timepickerCtrl = function ($scope, nameThisLocationService) {
     $scope.endtime.setSeconds( 0 );
   }
   else{
-    $scope.begintime = new Date(nameThisLocationService.getChosenPlace().begintime);
-    $scope.endtime = new Date(nameThisLocationService.getChosenPlace().endtime);
-    nameThisLocationService.setBeginTimeTemp($scope.begintime.getTime());
-    nameThisLocationService.setEndTimeTemp($scope.endtime.getTime());
+    $scope.begintime = new Date(createtripFactory.getChosenPlace().begintime);
+    $scope.endtime = new Date(createtripFactory.getChosenPlace().endtime);
+    createtripFactory.setBeginTimeTemp($scope.begintime.getTime());
+    createtripFactory.setEndTimeTemp($scope.endtime.getTime());
     // console.log($scope.begintime);
     // console.log($scope.endtime);
   }
 
   $scope.begintimechanged = function () {
-    // console.log(nameThisLocationService.getBeginTime());
-    nameThisLocationService.setBeginTimeTemp($scope.begintime.getTime());
-    // console.log(nameThisLocationService.getBeginTime());
+    // console.log(createtripFactory.getBeginTime());
+    createtripFactory.setBeginTimeTemp($scope.begintime.getTime());
+    // console.log(createtripFactory.getBeginTime());
   };
 
   $scope.endtimechanged = function () {
-    // console.log(nameThisLocationService.getEndTime());
-    nameThisLocationService.setEndTimeTemp($scope.endtime.getTime());
-    // console.log(nameThisLocationService.getEndTime());
+    // console.log(createtripFactory.getEndTime());
+    createtripFactory.setEndTimeTemp($scope.endtime.getTime());
+    // console.log(createtripFactory.getEndTime());
   };
 
   //AM PM

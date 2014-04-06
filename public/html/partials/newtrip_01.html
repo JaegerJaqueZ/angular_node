@@ -17,8 +17,44 @@
 		</div>
 		<div class="form-group">
 			<label for="tripDesc">Trip Description</label>
-			<textarea type="tripDesc" class="form-control" id="tripDesc" rows="3" placeholder="Enter Trip Description" ng-model="trip.desc"></textarea>
+			<textarea type="tripDesc" class="form-control" id="tripDesc" rows="3" placeholder="Enter Trip Description" ng-model="trip.description"></textarea>
 		</div>
+
+
+		<!-- Date Picker -->
+		<div ng-controller="DatepickerBeginCtrl">
+
+			<label for="begindate">Begin Date</label>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="input-group">
+						<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="begindate" is-open="opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" ng-change="changed()" close-text="Close" />
+						<span class="input-group-btn">
+							<button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div ng-controller="DatepickerEndCtrl">
+			<label for="begindate">End Date</label>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="input-group">
+						<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="enddate" is-open="opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" ng-change="changed()" close-text="Close" />
+						<span class="input-group-btn">
+							<button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</p>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
 		<div class="form-group">
 			<label for="Places">Place(s)</label>		
 			<div class="list-group">
@@ -44,7 +80,7 @@
 		<br>
 	</form>
 	<hr>
-	<button type="button" class="btn btn-primary btn-lg btn-block">Save</button>
+	<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="confirmTrip()">Save</button>
 	<button type="submit" class="btn btn-success btn-lg btn-block">Publish</button>
 </div>
 <!-- <div class="modal-footer">

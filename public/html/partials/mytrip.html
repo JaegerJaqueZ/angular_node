@@ -6,7 +6,7 @@
 	</div>
 	<br>
 	<!-- Add -->
-	<div ng-controller="newtrip01ModalCtrl">
+	<div>
 		<button class="btn btn-success" ng-click="open()">
 			<span class="glyphicon glyphicon-plus"></span> Add New Trip
 		</button>
@@ -14,8 +14,8 @@
 	<br>
 	<!-- List Trips -->
 	<div class="list-group">
-		<a ng-repeat="crtrip in crtrips | filter:query" href="" class="list-group-item">
-			{{crtrip.name}}
+		<a ng-repeat="trip in trips | filter:query" href="" class="list-group-item" ng-click="open(trip)">
+			{{trip.name}}
 			<span class="glyphicon glyphicon-chevron-right" style="float: right"></span>
 		</a>
 	</div>
